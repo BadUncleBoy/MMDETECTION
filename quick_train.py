@@ -6,7 +6,7 @@ from mmdet.apis import train_detector
 from mmcv import Config
 import mmcv
 import os.path as osp
-cfg = Config.fromfile('./configs/segRCNN/stage1_config.py')
+cfg = Config.fromfile('./configs/segRCNN/seg_config.py')
 # # Build dataset
 datasets = [build_dataset(cfg.data.train)]
 
