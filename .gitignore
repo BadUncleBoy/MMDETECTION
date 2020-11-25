@@ -122,3 +122,5 @@ checkpoints
 *.out
 .dist_test
 .ipynb_checkpoints
+quick_train.py
+quick_test.py
