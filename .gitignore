@@ -124,3 +124,4 @@ checkpoints
 .ipynb_checkpoints
 quick_train.py
 quick_test.py
+ggnn_attr.log
