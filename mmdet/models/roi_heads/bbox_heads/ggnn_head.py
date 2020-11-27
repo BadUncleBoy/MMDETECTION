@@ -100,7 +100,8 @@ class GGNNBBOXHEAD(SharedFCBBoxHead):
                            init_weights=init_weights, 
                            state_dim=ggnn_config.state_dim,
                            n_steps=ggnn_config.n_steps)
-
+        print("called")
+        print(self.modules)
     def init_weights(self):
         # 重写权重初始化函数，在GGNN中已经对分类网络进行权重初始化了
         if self.with_reg:
