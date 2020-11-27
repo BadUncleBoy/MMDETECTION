@@ -289,3 +289,12 @@ gpu_ids = range(0, 1)
 
 unexpected key in source state_dict: fc.weight, fc.bias
 
+2020-11-27 01:49:11,524 - mmdet - INFO - load checkpoint from exps/vg/r50/latest.pth
+2020-11-27 01:49:14,683 - mmdet - WARNING - The model and loaded state dict do not match exactly
+
+unexpected key in source state_dict: roi_head.bbox_head.fc_cls.weight, roi_head.bbox_head.fc_cls.bias
+
+missing keys in source state_dict: roi_head.bbox_head.fc_cls.feature2state_dim.0.weight, roi_head.bbox_head.fc_cls.feature2state_dim.0.bias, roi_head.bbox_head.fc_cls.state2feature_dim.0.weight, roi_head.bbox_head.fc_cls.state2feature_dim.0.bias, roi_head.bbox_head.fc_cls.propogator.reset_gate.0.weight, roi_head.bbox_head.fc_cls.propogator.reset_gate.0.bias, roi_head.bbox_head.fc_cls.propogator.update_gate.0.weight, roi_head.bbox_head.fc_cls.propogator.update_gate.0.bias, roi_head.bbox_head.fc_cls.propogator.tansform.0.weight, roi_head.bbox_head.fc_cls.propogator.tansform.0.bias
+
+2020-11-27 01:49:14,702 - mmdet - INFO - Start running, host: root@a939996ec069, work_dir: /data/zy/MMDETECTION/exps/vg/ggnnr50_attr
+2020-11-27 01:49:14,703 - mmdet - INFO - workflow: [('train', 1)], max: 12 epochs
