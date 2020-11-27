@@ -1,9 +1,9 @@
-2020-11-26 09:48:45,096 - mmdet - INFO - Environment info:
+2020-11-27 01:48:38,227 - mmdet - INFO - Environment info:
 ------------------------------------------------------------
 sys.platform: linux
 Python: 3.6.6 (default, Jul 29 2020, 15:34:58) [GCC 5.4.0 20160609]
 CUDA available: True
-GPU 0,1,2: GeForce GTX 1080 Ti
+GPU 0,1: GeForce GTX 1080 Ti
 CUDA_HOME: /usr/local/cuda
 NVCC: Cuda compilation tools, release 9.0, V9.0.176
 GCC: gcc (Ubuntu 5.4.0-6ubuntu1~16.04.11) 5.4.0 20160609
@@ -27,11 +27,11 @@ OpenCV: 4.3.0
 MMCV: 1.1.5
 MMCV Compiler: GCC 5.4
 MMCV CUDA Compiler: 9.0
-MMDetection: 2.5.0+96ca1ff
+MMDetection: 2.5.0+210200b
 ------------------------------------------------------------
 
-2020-11-26 09:48:46,927 - mmdet - INFO - Distributed training: True
-2020-11-26 09:48:48,636 - mmdet - INFO - Config:
+2020-11-27 01:48:39,925 - mmdet - INFO - Distributed training: True
+2020-11-27 01:48:41,586 - mmdet - INFO - Config:
 model = dict(
     type='GGNNRCNN',
     pretrained='torchvision://resnet50',
@@ -284,17 +284,8 @@ work_dir = 'exps/vg/ggnnr50_attr'
 seed = 0
 gpu_ids = range(0, 1)
 
-2020-11-26 09:48:57,961 - mmdet - INFO - load model from: torchvision://resnet50
-2020-11-26 09:48:58,871 - mmdet - WARNING - The model and loaded state dict do not match exactly
+2020-11-27 01:48:51,414 - mmdet - INFO - load model from: torchvision://resnet50
+2020-11-27 01:48:52,295 - mmdet - WARNING - The model and loaded state dict do not match exactly
 
 unexpected key in source state_dict: fc.weight, fc.bias
 
-2020-11-26 09:49:16,889 - mmdet - INFO - load checkpoint from exps/vg/r50/latest.pth
-2020-11-26 09:49:19,929 - mmdet - WARNING - The model and loaded state dict do not match exactly
-
-unexpected key in source state_dict: roi_head.bbox_head.fc_cls.weight, roi_head.bbox_head.fc_cls.bias
-
-missing keys in source state_dict: roi_head.bbox_head.fc_cls.feature2state_dim.0.weight, roi_head.bbox_head.fc_cls.feature2state_dim.0.bias, roi_head.bbox_head.fc_cls.state2feature_dim.0.weight, roi_head.bbox_head.fc_cls.state2feature_dim.0.bias, roi_head.bbox_head.fc_cls.propogator.reset_gate.0.weight, roi_head.bbox_head.fc_cls.propogator.reset_gate.0.bias, roi_head.bbox_head.fc_cls.propogator.update_gate.0.weight, roi_head.bbox_head.fc_cls.propogator.update_gate.0.bias, roi_head.bbox_head.fc_cls.propogator.tansform.0.weight, roi_head.bbox_head.fc_cls.propogator.tansform.0.bias
-
-2020-11-26 09:49:19,944 - mmdet - INFO - Start running, host: root@a939996ec069, work_dir: /data/zy/MMDETECTION/exps/vg/ggnnr50_attr
-2020-11-26 09:49:19,945 - mmdet - INFO - workflow: [('train', 1)], max: 12 epochs
