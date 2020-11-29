@@ -357,7 +357,7 @@ class GGGSBBoxHeadWith0(SharedFCBBoxHead):
         weight = bg_score.narrow(1, 0, 1)
 
         # Whether we should add this? Test
-        #fg_merge = weight * fg_merge
+        fg_merge = weight * fg_merge
 
         merge[:, -1] = bg_score[:, 1]
         merge[:, :-1] = fg_merge[:, :]
