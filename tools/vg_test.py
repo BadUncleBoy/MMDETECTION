@@ -258,6 +258,7 @@ def main():
             broadcast_buffers=False)
         outputs = multi_gpu_test(model, data_loader, args.tmpdir,
                                  args.gpu_collect)
+                                 
     if args.save_middle_result_only:
         with open("vg_middle_result.pkl", "wb") as f:
             pickle.dump(outputs, f)

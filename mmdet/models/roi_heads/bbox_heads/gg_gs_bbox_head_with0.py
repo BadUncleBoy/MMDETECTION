@@ -63,14 +63,6 @@ class GGNN(nn.Module):
                                     nn.Linear(state_dim, fc_out_channels))
         # Propogation Model
         self.propogator = Propogator(state_dim)
-        #self._initialization()
-
-    def _initialization(self):
-        # nn.init.normal_(self.classifier_weight, 0, 0.01)
-        for m in self.modules():
-            if isinstance(m, nn.Linear):
-                nn.init.normal_(m.weight, 0, 0.01)
-                nn.init.constant_(m.bias, 0)
 
     def forward(self, feat):
         state = self.feature2state_dim(self.classifier_weight)
@@ -100,15 +92,17 @@ class CLASS_HEAD(nn.Module):
                                      init_weights=init_classifier_weight,
                                      state_dim=gggs_config.state_dim,
                                      n_steps=gggs_config.n_steps))
-        #self._initializer()
     def forward(self, feat):
         class_preds = []
         for i in range(self.num_bins):
             class_preds.append(self.fc_bins[i](feat))
         return torch.cat(class_preds, dim=-1).contiguous()
-    def _initializer(self):
-        nn.init.normal_(self.fc_bins[0].weight, 0, 0.001)
-        nn.init.constant_(self.fc_bins[0].bias, 0)       
+
+    def _initialization(self):
+        for m in self.modules():
+            if isinstance(m, nn.Linear):
+                nn.init.normal_(m.weight, 0, 0.01)
+                nn.init.constant_(m.bias, 0)     
  
 @HEADS.register_module
 class GGGSBBoxHeadWith0(SharedFCBBoxHead):
@@ -148,8 +142,8 @@ class GGGSBBoxHeadWith0(SharedFCBBoxHead):
         self.others_sample_ratio = gggs_config.others_sample_ratio
 
     def init_weights(self):
+        self.fc_cls._initialization()
         # 重写权重初始化函数
-        print("initializer")
         if self.with_reg:
             nn.init.normal_(self.fc_reg.weight, 0, 0.001)
             nn.init.constant_(self.fc_reg.bias, 0)
@@ -363,7 +357,7 @@ class GGGSBBoxHeadWith0(SharedFCBBoxHead):
         weight = bg_score.narrow(1, 0, 1)
 
         # Whether we should add this? Test
-        fg_merge = weight * fg_merge
+        #fg_merge = weight * fg_merge
 
         merge[:, -1] = bg_score[:, 1]
         merge[:, :-1] = fg_merge[:, :]
