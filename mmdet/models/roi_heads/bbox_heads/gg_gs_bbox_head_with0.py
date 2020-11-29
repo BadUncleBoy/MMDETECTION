@@ -63,7 +63,7 @@ class GGNN(nn.Module):
                                     nn.Linear(state_dim, fc_out_channels))
         # Propogation Model
         self.propogator = Propogator(state_dim)
-        self._initialization()
+        #self._initialization()
 
     def _initialization(self):
         # nn.init.normal_(self.classifier_weight, 0, 0.01)
@@ -100,7 +100,7 @@ class CLASS_HEAD(nn.Module):
                                      init_weights=init_classifier_weight,
                                      state_dim=gggs_config.state_dim,
                                      n_steps=gggs_config.n_steps))
-        self._initializer()
+        #self._initializer()
     def forward(self, feat):
         class_preds = []
         for i in range(self.num_bins):
