@@ -107,7 +107,6 @@ class CLASS_HEAD(nn.Module):
             class_preds.append(self.fc_bins[i](feat))
         return torch.cat(class_preds, dim=-1).contiguous()
     def _initializer(self):
-        print("initializer")
         nn.init.normal_(self.fc_bins[0].weight, 0, 0.001)
         nn.init.constant_(self.fc_bins[0].bias, 0)       
  
@@ -150,6 +149,7 @@ class GGGSBBoxHeadWith0(SharedFCBBoxHead):
 
     def init_weights(self):
         # 重写权重初始化函数
+        print("initializer")
         if self.with_reg:
             nn.init.normal_(self.fc_reg.weight, 0, 0.001)
             nn.init.constant_(self.fc_reg.bias, 0)
