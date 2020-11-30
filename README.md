@@ -1,5 +1,10 @@
 # MMDETECTION
-|   **%**    |        **Method**         | **Backbone** | **AP** | **AP**50 | AP75 | **AP**S | APM  | APL  | AR100 | ARS  | **ARM** | ARL  |
+
+### Segmentation Arciitecture
+<img src="https://raw.githubusercontent.com/BadUncleBoy/MMDETECTION/main/data/jpgs/seg_architecure.png" width="1024">
+
+
+|   %        |             Method        | Backbone     | AP     | AP50     | AP75 | APS     | APM  | APL  | AR100 | ARS  | ARM     | ARL  |
 | :--------: | :-----------------------: | :----------: | :----: | -------- | :--: | :-----: | :--: | :--: | :---: | :--: | :-----: | :--: |
 | **VG1000** |         **HKRM**          |  ResNet101   |  7.8   | 13.4     | 8.1  |   4.1   | 8.1  | 12.7 | 22.7  | 9.6  |  20.8   | 31.4 |
 | **VG1000** | **Reasoning-RCNNR w FPN** |  ResNet101   |  8.2   | 13.3     | 8.5  |   3.4   | 8.3  | 14.0 | 23.5  | 8.8  |  21.7   | 32.9 |
