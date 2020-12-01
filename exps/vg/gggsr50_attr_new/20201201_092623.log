@@ -1,4 +1,4 @@
-2020-12-01 08:30:28,709 - mmdet - INFO - Environment info:
+2020-12-01 09:26:23,762 - mmdet - INFO - Environment info:
 ------------------------------------------------------------
 sys.platform: linux
 Python: 3.6.6 (default, Jul 29 2020, 15:34:58) [GCC 5.4.0 20160609]
@@ -27,11 +27,11 @@ OpenCV: 4.3.0
 MMCV: 1.1.5
 MMCV Compiler: GCC 5.4
 MMCV CUDA Compiler: 9.0
-MMDetection: 2.5.0+721d975
+MMDetection: 2.5.0+bb9fbec
 ------------------------------------------------------------
 
-2020-12-01 08:30:30,390 - mmdet - INFO - Distributed training: True
-2020-12-01 08:30:32,001 - mmdet - INFO - Config:
+2020-12-01 09:26:25,357 - mmdet - INFO - Distributed training: True
+2020-12-01 09:26:27,060 - mmdet - INFO - Config:
 model = dict(
     type='GGGSRCNN',
     pretrained='torchvision://resnet50',
@@ -300,24 +300,24 @@ checkpoint_config = dict(interval=1)
 log_config = dict(interval=50, hooks=[dict(type='TextLoggerHook')])
 dist_params = dict(backend='nccl')
 log_level = 'INFO'
-load_from = 'exps/vg/gggsr50_attr/latest.pth'
+load_from = 'exps/vg/r50/latest.pth'
 resume_from = None
 workflow = [('train', 1)]
 work_dir = 'exps/vg/gggsr50_attr_new'
 seed = 0
 gpu_ids = range(0, 1)
 
-2020-12-01 08:30:37,194 - mmdet - INFO - load model from: torchvision://resnet50
-2020-12-01 08:30:38,180 - mmdet - WARNING - The model and loaded state dict do not match exactly
+2020-12-01 09:26:31,119 - mmdet - INFO - load model from: torchvision://resnet50
+2020-12-01 09:26:31,463 - mmdet - WARNING - The model and loaded state dict do not match exactly
 
 unexpected key in source state_dict: fc.weight, fc.bias
 
-2020-12-01 08:30:54,541 - mmdet - INFO - load checkpoint from exps/vg/gggsr50_attr/latest.pth
-2020-12-01 08:30:55,932 - mmdet - WARNING - The model and loaded state dict do not match exactly
+2020-12-01 09:26:46,984 - mmdet - INFO - load checkpoint from exps/vg/r50/latest.pth
+2020-12-01 09:26:47,296 - mmdet - WARNING - The model and loaded state dict do not match exactly
 
-size mismatch for roi_head.bbox_head.fc_cls.fc_bins.1.feature2state_dim.0.weight: copying a param with shape torch.Size([256, 1000]) from checkpoint, the shape in current model is torch.Size([256, 1024]).
-size mismatch for roi_head.bbox_head.fc_cls.fc_bins.2.feature2state_dim.0.weight: copying a param with shape torch.Size([256, 1000]) from checkpoint, the shape in current model is torch.Size([256, 1024]).
-size mismatch for roi_head.bbox_head.fc_cls.fc_bins.3.feature2state_dim.0.weight: copying a param with shape torch.Size([256, 1000]) from checkpoint, the shape in current model is torch.Size([256, 1024]).
-size mismatch for roi_head.bbox_head.fc_cls.fc_bins.4.feature2state_dim.0.weight: copying a param with shape torch.Size([256, 1000]) from checkpoint, the shape in current model is torch.Size([256, 1024]).
-2020-12-01 08:30:55,953 - mmdet - INFO - Start running, host: root@a939996ec069, work_dir: /data/zy/MMDETECTION/exps/vg/gggsr50_attr_new
-2020-12-01 08:30:55,954 - mmdet - INFO - workflow: [('train', 1)], max: 12 epochs
+unexpected key in source state_dict: roi_head.bbox_head.fc_cls.weight, roi_head.bbox_head.fc_cls.bias
+
+missing keys in source state_dict: roi_head.bbox_head.fc_cls.fc_bins.0.weight, roi_head.bbox_head.fc_cls.fc_bins.0.bias, roi_head.bbox_head.fc_cls.fc_bins.1.feature2state_dim.0.weight, roi_head.bbox_head.fc_cls.fc_bins.1.feature2state_dim.0.bias, roi_head.bbox_head.fc_cls.fc_bins.1.last_fc.weight, roi_head.bbox_head.fc_cls.fc_bins.1.last_fc.bias, roi_head.bbox_head.fc_cls.fc_bins.1.propogator.reset_gate.0.weight, roi_head.bbox_head.fc_cls.fc_bins.1.propogator.reset_gate.0.bias, roi_head.bbox_head.fc_cls.fc_bins.1.propogator.update_gate.0.weight, roi_head.bbox_head.fc_cls.fc_bins.1.propogator.update_gate.0.bias, roi_head.bbox_head.fc_cls.fc_bins.1.propogator.tansform.0.weight, roi_head.bbox_head.fc_cls.fc_bins.1.propogator.tansform.0.bias, roi_head.bbox_head.fc_cls.fc_bins.2.feature2state_dim.0.weight, roi_head.bbox_head.fc_cls.fc_bins.2.feature2state_dim.0.bias, roi_head.bbox_head.fc_cls.fc_bins.2.last_fc.weight, roi_head.bbox_head.fc_cls.fc_bins.2.last_fc.bias, roi_head.bbox_head.fc_cls.fc_bins.2.propogator.reset_gate.0.weight, roi_head.bbox_head.fc_cls.fc_bins.2.propogator.reset_gate.0.bias, roi_head.bbox_head.fc_cls.fc_bins.2.propogator.update_gate.0.weight, roi_head.bbox_head.fc_cls.fc_bins.2.propogator.update_gate.0.bias, roi_head.bbox_head.fc_cls.fc_bins.2.propogator.tansform.0.weight, roi_head.bbox_head.fc_cls.fc_bins.2.propogator.tansform.0.bias, roi_head.bbox_head.fc_cls.fc_bins.3.feature2state_dim.0.weight, roi_head.bbox_head.fc_cls.fc_bins.3.feature2state_dim.0.bias, roi_head.bbox_head.fc_cls.fc_bins.3.last_fc.weight, roi_head.bbox_head.fc_cls.fc_bins.3.last_fc.bias, roi_head.bbox_head.fc_cls.fc_bins.3.propogator.reset_gate.0.weight, roi_head.bbox_head.fc_cls.fc_bins.3.propogator.reset_gate.0.bias, roi_head.bbox_head.fc_cls.fc_bins.3.propogator.update_gate.0.weight, roi_head.bbox_head.fc_cls.fc_bins.3.propogator.update_gate.0.bias, roi_head.bbox_head.fc_cls.fc_bins.3.propogator.tansform.0.weight, roi_head.bbox_head.fc_cls.fc_bins.3.propogator.tansform.0.bias, roi_head.bbox_head.fc_cls.fc_bins.4.feature2state_dim.0.weight, roi_head.bbox_head.fc_cls.fc_bins.4.feature2state_dim.0.bias, roi_head.bbox_head.fc_cls.fc_bins.4.last_fc.weight, roi_head.bbox_head.fc_cls.fc_bins.4.last_fc.bias, roi_head.bbox_head.fc_cls.fc_bins.4.propogator.reset_gate.0.weight, roi_head.bbox_head.fc_cls.fc_bins.4.propogator.reset_gate.0.bias, roi_head.bbox_head.fc_cls.fc_bins.4.propogator.update_gate.0.weight, roi_head.bbox_head.fc_cls.fc_bins.4.propogator.update_gate.0.bias, roi_head.bbox_head.fc_cls.fc_bins.4.propogator.tansform.0.weight, roi_head.bbox_head.fc_cls.fc_bins.4.propogator.tansform.0.bias
+
+2020-12-01 09:26:47,314 - mmdet - INFO - Start running, host: root@a939996ec069, work_dir: /data/zy/MMDETECTION/exps/vg/gggsr50_attr_new
+2020-12-01 09:26:47,314 - mmdet - INFO - workflow: [('train', 1)], max: 12 epochs

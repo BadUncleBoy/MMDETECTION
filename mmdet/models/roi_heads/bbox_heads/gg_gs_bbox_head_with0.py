@@ -60,6 +60,7 @@ class GGNN(nn.Module):
         self.feature2state_dim = nn.Sequential(
                                     nn.Linear(fc_out_channels, state_dim),
                                     nn.Tanh())
+        self.last_fc = nn.Linear(state_dim, state_dim)
         # Propogation Model
         self.propogator = Propogator(state_dim)
 
@@ -68,7 +69,7 @@ class GGNN(nn.Module):
 
         for _ in range(self.n_steps):
             state = self.propogator(state, self.A)
-        return state
+        return self.last_fc(state)
 
 class CLASS_HEAD(nn.Module):
     def __init__(self, gggs_config, cls_last_dim, fc_out_channels):
@@ -99,7 +100,7 @@ class CLASS_HEAD(nn.Module):
         for m in self.modules():
             if isinstance(m, nn.Linear):
                 nn.init.normal_(m.weight, 0, 0.01)
-                nn.init.constant_(m.bias, 0)     
+                nn.init.constant_(m.bias, 0)
  
 @HEADS.register_module
 class GGGSBBoxHeadWith0(SharedFCBBoxHead):
