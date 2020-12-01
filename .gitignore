@@ -126,3 +126,4 @@ quick_train.py
 quick_test.py
 ggnn_attr.log
 gggs.log
+exps/vg/gggsr50_attr/*

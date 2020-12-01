@@ -33,5 +33,5 @@ data = dict(samples_per_gpu=4, workers_per_gpu=4, train=dict(dataset=dict(pipeli
 work_dir = "exps/vg/gggsr50_attr"
 seed = 0
 gpu_ids = range(0, 1)
-load_from = "exps/vg/r50/latest.pth"
 resume_from = None
+load_from = "exps/vg/gggsr50_attr/latest.pth"
