@@ -1,0 +1,23 @@
+_base_ = 'coco_instance.py'
+dataset_type = 'VG1000Dataset'
+data_root = '/data/zy/dataset/vg/'
+data = dict(
+    samples_per_gpu=2,
+    workers_per_gpu=0,
+    train=dict(
+        _delete_=True,
+        type='ClassBalancedDataset',
+        oversample_thr=1e-3,
+        dataset=dict(
+            type=dataset_type,
+            ann_file=data_root + 'annotations/cocoformat_vgtrain.json',
+            img_prefix=data_root + 'img/')),
+    val=dict(
+        type=dataset_type,
+        ann_file=data_root + 'annotations/cocoformat_vgval.json',
+        img_prefix=data_root + 'img/'),
+    test=dict(
+        type=dataset_type,
+        ann_file=data_root + 'annotations/cocoformat_vgval.json',
+        img_prefix=data_root + 'img/'))
+evaluation = dict(metric=['bbox'])
