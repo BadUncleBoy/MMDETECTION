@@ -1,7 +1,7 @@
 # MMDETECTION
 
 ### Segmentation Arciitecture
-<img src="https://raw.githubusercontent.com/BadUncleBoy/MMDETECTION/main/data/jpgs/seg_architecture.png" width="1024">
+<img src="https://raw.githubusercontent.com/BadUncleBoy/MMDETECTION/gggs/data/jpgs/seg_architecture.png" width="1024">
 
 
 |   %        |             Method        | Backbone     | AP     | AP50     | AP75 | APS     | APM  | APL  | AR100 | ARS  | ARM     | ARL  |
