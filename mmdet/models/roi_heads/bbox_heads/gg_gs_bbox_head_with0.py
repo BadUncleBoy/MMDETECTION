@@ -33,7 +33,7 @@ class Propogator(nn.Module):
     def forward(self, state, A):
         a0 = torch.mm(state, A)
 
-        a = torch.cat((a0, state), 1)
+        a = torch.ca11]t((a0, state), 1)
 
         r = self.reset_gate(a)
         z = self.update_gate(a)
