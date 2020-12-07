@@ -253,20 +253,20 @@ data = dict(
                 ])
         ]))
 evaluation = dict(metric=['bbox'])
-optimizer = dict(type='SGD', lr=0.01, momentum=0.9, weight_decay=0.0001)
+optimizer = dict(type='SGD', lr=0.0005, momentum=0.9, weight_decay=0.0001)
 optimizer_config = dict(grad_clip=dict(max_norm=35, norm_type=2))
 lr_config = dict(
     policy='step',
     warmup='linear',
     warmup_iters=50,
     warmup_ratio=0.001,
-    step=[8, 11])
-total_epochs = 12
+    step=[6])
+total_epochs = 8
 checkpoint_config = dict(interval=1)
 log_config = dict(interval=50, hooks=[dict(type='TextLoggerHook')])
 dist_params = dict(backend='nccl')
 log_level = 'INFO'
-load_from = 'exps/vg/r50/latest.pth'
+load_from = 'exps/vg/gggsr50_attr_new/latest.pth'
 resume_from = None
 workflow = [('train', 1)]
 work_dir = 'exps/vg/gggsr50_attr_new'

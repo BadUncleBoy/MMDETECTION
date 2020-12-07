@@ -1,13 +1,18 @@
 _base_ = [
     '../../_base_/models/gggs_faster_rcnn_r50_fpn.py',
     '../../_base_/datasets/vg1000_detection.py',
-    '../../_base_/schedules/funtune.py', 
+    '../../_base_/schedules/schedule_1x.py', 
     '../../_base_/default_runtime.py'
 ]
 model = dict(
     backbone=dict(frozen_stages=1),
     roi_head=dict(
-        bbox_head=dict(num_classes=1000)))
+        bbox_head=dict(type="GGGSMultiBBoxHeadWith0",
+            num_classes=1000,
+            gggs_config=dict(adjecent_path=["./data/vg/mix/adjecent_1.pt", 
+                                            "./data/vg/mix/adjecent_2.pt", 
+                                            "./data/vg/mix/adjecent_3.pt", 
+                                            "./data/vg/mix/adjecent_4.pt"]))))
 test_cfg = dict(
     rcnn=dict(
         score_thr=0.0001,
@@ -30,9 +35,9 @@ train_pipeline = [
     dict(type='Collect', keys=['img', 'gt_bboxes', 'gt_labels']),
 ]
 data = dict(samples_per_gpu=5, workers_per_gpu=5, train=dict(dataset=dict(pipeline=train_pipeline)))
-work_dir = "exps/vg/gggsr50_attr_new"
+work_dir = "exps/vg/gggsr50_mix_new"
 seed = 0
 gpu_ids = range(0, 1)
-load_from = "exps/vg/gggsr50_attr_new/latest.pth"
+load_from = "exps/vg/r50/latest.pth"
 resume_from=None
-#load_from = "exps/vg/r50/latest.pth"
+

@@ -49,27 +49,31 @@ class GGNN(nn.Module):
     Mode: SelectNode
     Implementation based on https://arxiv.org/abs/1511.05493
     """
-    def __init__(self, A, fc_out_channels, init_weights, state_dim=10, n_steps=5):
+    def __init__(self, A, fc_out_channels, n_steps=5):
         super(GGNN, self).__init__()
         self.n_steps = n_steps
-
         self.A = A
-        state_dim = A.size()[0]
-        self.classifier_weight = init_weights
+        state_dim = A[0].size()[0]
         #convert input node dimension to state_dim
         self.feature2state_dim = nn.Sequential(
                                     nn.Linear(fc_out_channels, state_dim),
                                     nn.Tanh())
         self.last_fc = nn.Linear(state_dim, state_dim)
         # Propogation Model
-        self.propogator = Propogator(state_dim)
+        self.propogator_list = nn.ModuleList()
+        self.feat_weight = nn.Parameter(torch.ones(len(A), dtype=torch.float32), requires_grad=True)
+        for _ in A:
+            self.propogator_list.append(Propogator(state_dim))
 
     def forward(self, feat):
         state = self.feature2state_dim(feat)
-
-        for _ in range(self.n_steps):
-            state = self.propogator(state, self.A)
-        return self.last_fc(state)
+        gg_feats = 0
+        for index, a in enumerate(self.A):
+            state_each = state
+            for _ in range(self.n_steps):
+                state_each = self.propogator_list[index](state_each, a)
+            gg_feats += state_each * self.feat_weight[index]
+        return self.last_fc(gg_feats / (torch.sum(self.feat_weight)+1e-4))
 
 class CLASS_HEAD(nn.Module):
     def __init__(self, gggs_config, cls_last_dim, fc_out_channels):
@@ -83,12 +87,10 @@ class CLASS_HEAD(nn.Module):
         self.num_bins = gggs_config.num_bins
         #forceground bin
         for i in range(self.num_bins-1):
-            init_classifier_weight = torch.load(gggs_config.initweight_path[i]).cuda()
-            adjecent = torch.load(gggs_config.adjecent_path[i]).cuda()
+            adjecent = torch.load(gggs_config.adjecent_path[i])
+            adjecent = [each.cuda() for each in adjecent]
             self.fc_bins.append(GGNN(A=adjecent,
                                      fc_out_channels=fc_out_channels,
-                                     init_weights=init_classifier_weight,
-                                     state_dim=gggs_config.state_dim,
                                      n_steps=gggs_config.n_steps))
     def forward(self, feat):
         class_preds = []
@@ -103,7 +105,7 @@ class CLASS_HEAD(nn.Module):
                 nn.init.constant_(m.bias, 0)
  
 @HEADS.register_module
-class GGGSBBoxHeadWith0(SharedFCBBoxHead):
+class GGGSMultiBBoxHeadWith0(SharedFCBBoxHead):
 
     def __init__(self,
                  num_fcs=2,
@@ -111,7 +113,7 @@ class GGGSBBoxHeadWith0(SharedFCBBoxHead):
                  gggs_config=None,
                  *args,
                  **kwargs):
-        super(GGGSBBoxHeadWith0, self).__init__(num_fcs=num_fcs,
+        super(GGGSMultiBBoxHeadWith0, self).__init__(num_fcs=num_fcs,
                                          fc_out_channels=fc_out_channels,
                                          *args,
                                          **kwargs)
